@@ -425,7 +425,7 @@
   .carousel-text-area {
     padding-right: 0;
     max-width: 100%;
-    display: block !important;
+    display: none !important;
   }
   
   .text-content-wrapper {
