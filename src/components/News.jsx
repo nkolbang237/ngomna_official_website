@@ -19,10 +19,10 @@ const News = () => {
   const newsItems = [
     {
       id: 1,
-      title: "GOV IA : UNE RÉVOLUTION POUR L'ADMINISTRATION PUBLIQUE CAMEROUNAISE",
-      excerpt: "Découvrez comment l'intelligence artificielle transforme les services publics camerounais avec des innovations révolutionnaires.",
+      title: t('news.article1.title'),
+      excerpt: t('news.article1.excerpt'),
       date: "2025-01-15",
-      category: "Innovation",
+      category: t('news.article1.category'),
       icon: <Zap className="w-5 h-5" />,
       images: [
         "/GOV AI IMAGE 1.jpg",
@@ -39,38 +39,35 @@ const News = () => {
       date: "2025-01-10",
       category: t('news.article2.category'),
       icon: <Shield className="w-5 h-5" />,
-      image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=600"
+      image: "/Ngomna-Cenadi.webp",
+      link: "https://www.digitalbusiness.africa/cameroun-selon-le-cenadi-lapplication-ngomna-pour-l-impression-des-bulletins-de-soldes-et-autres-services-totalise-60-000-telechargements-sur-google-play/"
     },
     {
       id: 3,
-      title: t('news.article3.title'),
-      excerpt: t('news.article3.excerpt'),
+      title: "#Ngomna | A la faveur de la circulaire N° 000 00003/MINFI/DGI/LRI/L du 21 mars 2024, précisant les modalités de mise en œuvre de la déclaration des revenus des contribuables non professionnels, et fort du potentiel de l'application nGomna, la Direction Générale des Impôts (#DGI) a sollicité le Centre National de Développement de l'Informatique (#CENADI) pour une collaboration visant à faciliter l'opération de déclaration des revenus aux agents publics",
+      excerpt: "Collaboration entre la DGI et le CENADI pour faciliter la déclaration des revenus des agents publics via nGomna.",
       date: "2025-01-05",
-      category: t('news.article3.category'),
+      category: "Partenariat",
       icon: <Users className="w-5 h-5" />,
-      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600"
-    },
-    {
-      id: 4,
-      title: t('news.article4.title'),
-      excerpt: t('news.article4.excerpt'),
-      date: "2025-01-01",
-      category: t('news.article4.category'),
-      icon: <Star className="w-5 h-5" />,
-      image: "https://images.pexels.com/photos/1068523/pexels-photo-1068523.jpeg?auto=compress&cs=tinysrgb&w=600"
+      images: [
+        "/dgi.jpg",
+        "/dgi 2.jpg",
+        "/DGI 3.jpg"
+      ],
+      link: "https://www.facebook.com/minfi.cameroun/posts/ngomna-a-la-faveur-de-la-circulaire-n-000-00003minfidgilril-du-21-mars-2024-pr%C3%A9c/910730437766185/"
     }
   ];
 
   const getCategoryColor = (category) => {
     switch (category) {
-      case t('news.article1.category'):
+      case 'Innovation':
         return 'from-green-500 to-emerald-600';
-      case t('news.article2.category'):
+      case 'Sécurité':
+      case 'Security':
         return 'from-emerald-500 to-teal-600';
-      case t('news.article3.category'):
+      case 'Partenariat':
+      case 'Partnership':
         return 'from-yellow-500 to-orange-500';
-      case t('news.article4.category'):
-        return 'from-yellow-400 to-yellow-500';
       default:
         return 'from-gray-500 to-gray-600';
     }
@@ -83,6 +80,12 @@ const News = () => {
       month: 'long', 
       day: 'numeric' 
     });
+  };
+
+  const handleNewsClick = (news) => {
+    if (news.link) {
+      window.open(news.link, '_blank');
+    }
   };
 
   return (
@@ -109,16 +112,18 @@ const News = () => {
           </motion.p>
         </AnimatedSection>
 
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 mb-8 lg:mb-12">
+        <div className="mb-8 lg:mb-12">
           {/* Featured Article */}
-          <AnimatedSection className="lg:col-span-2" direction="up">
+          <AnimatedSection direction="up">
             <motion.article
+              onClick={() => handleNewsClick(newsItems[0])}
               className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500"
               whileHover={{ 
                 scale: 1.02,
                 boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              style={{ cursor: 'pointer' }}
             >
               <div className="lg:flex">
                 <div className="lg:w-1/2 relative overflow-hidden">
@@ -233,7 +238,7 @@ const News = () => {
         </div>
 
         {/* Other News Items */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
           {newsItems.slice(1).map((item, index) => (
             <AnimatedSection
               key={item.id}
@@ -241,21 +246,54 @@ const News = () => {
               direction="up"
             >
               <motion.article
+                onClick={() => handleNewsClick(item)}
                 className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 h-full"
                 whileHover={{ 
                   scale: 1.02,
                   boxShadow: "0 20px 40px -12px rgba(0, 0, 0, 0.25)"
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="relative overflow-hidden">
-                  <motion.img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-40 sm:h-48 object-cover"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ duration: 0.4, ease: "easeOut" }}
-                  />
+                  {item.images ? (
+                    <div className="w-full h-40 sm:h-48">
+                      <Swiper
+                        modules={[Autoplay, Pagination]}
+                        autoplay={{
+                          delay: 4000,
+                          disableOnInteraction: false,
+                        }}
+                        pagination={{
+                          clickable: true,
+                          bulletClass: 'swiper-pagination-bullet news-bullet-small',
+                          bulletActiveClass: 'swiper-pagination-bullet-active news-bullet-small-active'
+                        }}
+                        className="w-full h-full"
+                        loop={true}
+                      >
+                        {item.images.map((image, imgIndex) => (
+                          <SwiperSlide key={imgIndex}>
+                            <motion.img
+                              src={image}
+                              alt={`${item.title} - Image ${imgIndex + 1}`}
+                              className="w-full h-full object-cover"
+                              whileHover={{ scale: 1.1 }}
+                              transition={{ duration: 0.4, ease: "easeOut" }}
+                            />
+                          </SwiperSlide>
+                        ))}
+                      </Swiper>
+                    </div>
+                  ) : (
+                    <motion.img
+                      src={item.image}
+                      alt={item.title}
+                      className="w-full h-40 sm:h-48 object-cover"
+                      whileHover={{ scale: 1.1 }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                    />
+                  )}
                   <motion.div 
                     className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   />
@@ -278,7 +316,7 @@ const News = () => {
                   </motion.div>
                   
                   <motion.h3 
-                    className="text-base sm:text-lg font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors line-clamp-2 flex-grow"
+                    className="text-base sm:text-lg font-bold text-gray-900 mb-3 group-hover:text-green-600 transition-colors line-clamp-3 flex-grow"
                     initial={{ y: 10, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.3, delay: 0.2 }}
@@ -363,6 +401,21 @@ const News = () => {
           box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4) !important;
         }
 
+        .news-bullet-small {
+          background: rgba(34, 197, 94, 0.3) !important;
+          opacity: 1 !important;
+          width: 8px !important;
+          height: 8px !important;
+          margin: 0 3px !important;
+          transition: all 0.3s ease !important;
+        }
+
+        .news-bullet-small-active {
+          background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+          transform: scale(1.2) !important;
+          box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4) !important;
+        }
+
         @media (max-width: 639px) {
           .carousel-container {
             padding: 20px 16px;
@@ -402,15 +455,13 @@ const News = () => {
 
         /* Responsive fixes for small screens */
         @media (max-width: 768px) {
-          .grid.sm\\:grid-cols-2.lg\\:grid-cols-3.gap-6.lg\\:gap-8 {
+          .grid.sm\\:grid-cols-2.gap-6.lg\\:gap-8 {
             grid-template-columns: 1fr;
             gap: 1rem;
           }
           
-          .grid.lg\\:grid-cols-2.gap-6.lg\\:gap-8.mb-8.lg\\:mb-12 {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            margin-bottom: 2rem;
+          .mb-8.lg\\:mb-12 {
+            margin-bottom: 2rem !important;
           }
         }
       `}</style>
