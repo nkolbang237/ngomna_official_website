@@ -129,7 +129,10 @@ export const fr = {
   'news.article1.category': 'Innovation',
   'news.article2.title': 'Cameroun : Selon le Cenadi, l\'application nGOMNA pour l\'impression des bulletins de soldes et autres services totalise 60.000 téléchargements sur Google Play',
   'news.article2.excerpt': 'L\'application nGomna continue de gagner en popularité auprès des fonctionnaires camerounais avec des jalons de téléchargement significatifs.',
-  'news.article2.category': 'Sécurité',
+  'news.article2.category': 'Téléchargements',
+  'news.article3.title': '#Ngomna | A la faveur de la circulaire N° 000 00003/MINFI/DGI/LRI/L du 21 mars 2024, précisant les modalités de mise en œuvre de la déclaration des revenus des contribuables non professionnels, et fort du potentiel de l\'application nGomna, la Direction Générale des Impôts (#DGI) a sollicité le Centre National de Développement de l\'Informatique (#CENADI) pour une collaboration visant à faciliter l\'opération de déclaration des revenus aux agents publics',
+  'news.article3.excerpt': 'Collaboration entre la DGI et le CENADI pour faciliter la déclaration des revenus des agents publics via nGomna.',
+  'news.article3.category': 'Partenariat',
   
   // Comments Section
   'comments.title': 'Ce Que Disent les Gens',

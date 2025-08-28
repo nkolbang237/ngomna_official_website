@@ -5,6 +5,13 @@ import { useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import AnimatedSection from '../components/AnimatedSection';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/autoplay';
 
 const NewsPage = () => {
   const { t } = useLanguage();
@@ -28,16 +35,22 @@ const NewsPage = () => {
       date: "2025-01-10",
       category: "Sécurité",
       icon: <Shield className="w-5 h-5" />,
-      image: "https://images.pexels.com/photos/60504/security-protection-anti-virus-software-60504.jpeg?auto=compress&cs=tinysrgb&w=600"
+      image: "/Ngomna-Cenadi.webp",
+      link: "https://www.digitalbusiness.africa/cameroun-selon-le-cenadi-lapplication-ngomna-pour-l-impression-des-bulletins-de-soldes-et-autres-services-totalise-60-000-telechargements-sur-google-play/"
     },
     {
       id: 3,
-      title: "Intégration Réussie avec les Services DGI",
-      excerpt: "nGomna s'intègre désormais parfaitement avec les services fiscaux pour une gestion simplifiée de vos obligations.",
+      title: "#Ngomna | A la faveur de la circulaire N° 000 00003/MINFI/DGI/LRI/L du 21 mars 2024, précisant les modalités de mise en œuvre de la déclaration des revenus des contribuables non professionnels, et fort du potentiel de l'application nGomna, la Direction Générale des Impôts (#DGI) a sollicité le Centre National de Développement de l'Informatique (#CENADI) pour une collaboration visant à faciliter l'opération de déclaration des revenus aux agents publics",
+      excerpt: "Collaboration entre la DGI et le CENADI pour faciliter la déclaration des revenus des agents publics via nGomna.",
       date: "2025-01-05",
-      category: "Services",
-      icon: <Globe className="w-5 h-5" />,
-      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600"
+      category: "Partenariat",
+      icon: <Users className="w-5 h-5" />,
+      images: [
+        "/dgi.jpg",
+        "/dgi 2.jpg",
+        "/DGI 3.jpg"
+      ],
+      link: "https://www.facebook.com/minfi.cameroun/posts/ngomna-a-la-faveur-de-la-circulaire-n-000-00003minfidgilril-du-21-mars-2024-pr%C3%A9c/910730437766185/"
     },
     {
       id: 4,
@@ -92,14 +105,14 @@ const NewsPage = () => {
         return 'from-green-500 to-emerald-600';
       case 'Sécurité':
         return 'from-red-500 to-red-600';
+      case 'Partenariat':
+        return 'from-yellow-500 to-orange-500';
       case 'Services':
         return 'from-blue-500 to-blue-600';
       case 'Communauté':
         return 'from-purple-500 to-purple-600';
       case 'Design':
         return 'from-pink-500 to-pink-600';
-      case 'Partenariat':
-        return 'from-orange-500 to-orange-600';
       case 'Technologie':
         return 'from-yellow-500 to-yellow-600';
       case 'Formation':
@@ -283,13 +296,44 @@ const NewsPage = () => {
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <div className="relative overflow-hidden">
-                    <motion.img
-                      src={news.image}
-                      alt={news.title}
-                      className="w-full h-48 object-cover"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.4, ease: "easeOut" }}
-                    />
+                    {news.images ? (
+                      <div className="w-full h-48">
+                        <Swiper
+                          modules={[Autoplay, Pagination]}
+                          autoplay={{
+                            delay: 4000,
+                            disableOnInteraction: false,
+                          }}
+                          pagination={{
+                            clickable: true,
+                            bulletClass: 'swiper-pagination-bullet news-bullet-small',
+                            bulletActiveClass: 'swiper-pagination-bullet-active news-bullet-small-active'
+                          }}
+                          className="w-full h-full"
+                          loop={true}
+                        >
+                          {news.images.map((image, imgIndex) => (
+                            <SwiperSlide key={imgIndex}>
+                              <motion.img
+                                src={image}
+                                alt={`${news.title} - Image ${imgIndex + 1}`}
+                                className="w-full h-full object-cover"
+                                whileHover={{ scale: 1.1 }}
+                                transition={{ duration: 0.4, ease: "easeOut" }}
+                              />
+                            </SwiperSlide>
+                          ))}
+                        </Swiper>
+                      </div>
+                    ) : (
+                      <motion.img
+                        src={news.image}
+                        alt={news.title}
+                        className="w-full h-48 object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                      />
+                    )}
                     <motion.div 
                       className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     />

@@ -38,17 +38,17 @@ const News = () => {
       excerpt: t('news.article2.excerpt'),
       date: "2025-01-10",
       category: t('news.article2.category'),
-      icon: <Shield className="w-5 h-5" />,
+      icon: <Users className="w-5 h-5" />,
       image: "/Ngomna-Cenadi.webp",
       link: "https://www.digitalbusiness.africa/cameroun-selon-le-cenadi-lapplication-ngomna-pour-l-impression-des-bulletins-de-soldes-et-autres-services-totalise-60-000-telechargements-sur-google-play/"
     },
     {
       id: 3,
-      title: "#Ngomna | A la faveur de la circulaire N° 000 00003/MINFI/DGI/LRI/L du 21 mars 2024, précisant les modalités de mise en œuvre de la déclaration des revenus des contribuables non professionnels, et fort du potentiel de l'application nGomna, la Direction Générale des Impôts (#DGI) a sollicité le Centre National de Développement de l'Informatique (#CENADI) pour une collaboration visant à faciliter l'opération de déclaration des revenus aux agents publics",
-      excerpt: "Collaboration entre la DGI et le CENADI pour faciliter la déclaration des revenus des agents publics via nGomna.",
+      title: t('news.article3.title'),
+      excerpt: t('news.article3.excerpt'),
       date: "2025-01-05",
-      category: "Partenariat",
-      icon: <Users className="w-5 h-5" />,
+      category: t('news.article3.category'),
+      icon: <Shield className="w-5 h-5" />,
       images: [
         "/dgi.jpg",
         "/dgi 2.jpg",
@@ -62,8 +62,8 @@ const News = () => {
     switch (category) {
       case 'Innovation':
         return 'from-green-500 to-emerald-600';
-      case 'Sécurité':
-      case 'Security':
+      case 'Téléchargements':
+      case 'Downloads':
         return 'from-emerald-500 to-teal-600';
       case 'Partenariat':
       case 'Partnership':
@@ -112,12 +112,12 @@ const News = () => {
           </motion.p>
         </AnimatedSection>
 
-        <div className="mb-8 lg:mb-12">
+        <div className="mb-8 lg:mb-12 block">
           {/* Featured Article */}
           <AnimatedSection direction="up">
             <motion.article
               onClick={() => handleNewsClick(newsItems[0])}
-              className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500"
+              className="group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-500 block"
               whileHover={{ 
                 scale: 1.02,
                 boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
@@ -125,8 +125,8 @@ const News = () => {
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
               style={{ cursor: 'pointer' }}
             >
-              <div className="lg:flex">
-                <div className="lg:w-1/2 relative overflow-hidden">
+              <div className="flex flex-col lg:flex-row">
+                <div className="w-full lg:w-1/2 relative overflow-hidden">
                   <div className="w-full h-48 sm:h-64 lg:h-full">
                     <Swiper
                       modules={[Autoplay, Pagination]}
@@ -168,7 +168,7 @@ const News = () => {
                   </motion.div>
                 </div>
                 
-                <div className="lg:w-1/2 p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
+                <div className="w-full lg:w-1/2 p-6 sm:p-8 lg:p-12 flex flex-col justify-center">
                   <motion.div 
                     className="flex items-center space-x-2 mb-4"
                     initial={{ x: -20, opacity: 0 }}
@@ -238,8 +238,8 @@ const News = () => {
         </div>
 
         {/* Other News Items */}
-        <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
-          {newsItems.slice(1).map((item, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-8">
+          {newsItems.slice(1, 3).map((item, index) => (
             <AnimatedSection
               key={item.id}
               delay={index * 0.1}
@@ -455,13 +455,36 @@ const News = () => {
 
         /* Responsive fixes for small screens */
         @media (max-width: 768px) {
-          .grid.sm\\:grid-cols-2.gap-6.lg\\:gap-8 {
+          .grid.grid-cols-1.sm\\:grid-cols-2.gap-6.lg\\:gap-8 {
             grid-template-columns: 1fr;
             gap: 1rem;
           }
           
           .mb-8.lg\\:mb-12 {
             margin-bottom: 2rem !important;
+          }
+          
+          .flex.flex-col.lg\\:flex-row {
+            flex-direction: column !important;
+          }
+          
+          .w-full.lg\\:w-1\\/2 {
+            width: 100% !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .text-xl.sm\\:text-2xl.lg\\:text-3xl {
+            font-size: 1.125rem !important;
+            line-height: 1.4 !important;
+          }
+          
+          .text-base.sm\\:text-lg {
+            font-size: 0.875rem !important;
+          }
+          
+          .p-6.sm\\:p-8.lg\\:p-12 {
+            padding: 1rem !important;
           }
         }
       `}</style>

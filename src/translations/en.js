@@ -129,7 +129,10 @@ export const en = {
   'news.article1.category': 'Innovation',
   'news.article2.title': 'Cameroon: According to Cenadi, the nGOMNA application for printing payslips and other services totals 60,000 downloads on Google Play',
   'news.article2.excerpt': 'The nGomna application continues to gain popularity among Cameroonian civil servants with significant download milestones.',
-  'news.article2.category': 'Security',
+  'news.article2.category': 'Downloads',
+  'news.article3.title': '#Ngomna | Following circular No. 000 00003/MINFI/DGI/LRI/L of March 21, 2024, specifying the implementation procedures for income declaration by non-professional taxpayers, and given the potential of the nGomna application, the General Directorate of Taxes (#DGI) has requested the National Center for Computer Development (#CENADI) for collaboration aimed at facilitating the income declaration operation for public agents',
+  'news.article3.excerpt': 'Collaboration between DGI and CENADI to facilitate income declaration for public agents via nGomna.',
+  'news.article3.category': 'Partnership',
   
   // Comments Section
   'comments.title': 'What People Are Saying',

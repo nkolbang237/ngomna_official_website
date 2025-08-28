@@ -176,13 +176,17 @@ const Hero = () => {
                   downloadSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 w-auto justify-center mx-auto sm:mx-0"
+              className="group bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-sm sm:text-base md:text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2 w-auto justify-center mx-auto sm:mx-0 flex-shrink-0"
               whileHover={{ 
                 scale: 1.05,
                 boxShadow: "0 20px 40px rgba(34, 197, 94, 0.3)"
               }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              style={{ 
+                minWidth: 'fit-content',
+                maxWidth: '280px'
+              }}
             >
               <Download className="w-4 h-4 sm:w-5 sm:h-5" />
               <span>{t('hero.download')}</span>
