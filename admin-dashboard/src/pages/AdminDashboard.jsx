@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import apiService from '../../front_end/src/services/api';
+import apiService from '../services/api';
 import { 
   LayoutDashboard, 
   Users, 
